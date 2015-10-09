@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7331BC6345B00F3F906 /* main.cpp */; };
+		FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7461BC63CC800F3F906 /* BrickBotTests.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A7571BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FBC4A72E1BC6345B00F3F906 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FBC4A7301BC6345B00F3F906 /* BrickBot_ArduinoLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BrickBot_ArduinoLib; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBC4A7331BC6345B00F3F906 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Servo_Mock.cpp; sourceTree = "<group>"; };
+		FBC4A73D1BC6353D00F3F906 /* Servo_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Servo_Mock.hpp; sourceTree = "<group>"; };
+		FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBot.cpp; sourceTree = "<group>"; };
+		FBC4A7401BC636A400F3F906 /* BrickBot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBot.h; sourceTree = "<group>"; };
+		FBC4A7461BC63CC800F3F906 /* BrickBotTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotTests.cpp; sourceTree = "<group>"; };
+		FBC4A7471BC63CC800F3F906 /* BrickBotTests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrickBotTests.hpp; sourceTree = "<group>"; };
+		FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arduino_Mock.cpp; sourceTree = "<group>"; };
+		FBC4A74D1BC654A100F3F906 /* Arduino_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Arduino_Mock.hpp; sourceTree = "<group>"; };
+		FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotServo.cpp; sourceTree = "<group>"; };
+		FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotServo.h; sourceTree = "<group>"; };
+		FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotRangeFinder.cpp; sourceTree = "<group>"; };
+		FBC4A7561BC6EBFD00F3F906 /* BrickBotRangeFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotRangeFinder.h; sourceTree = "<group>"; };
+		FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stream_Mock.cpp; sourceTree = "<group>"; };
+		FBC4A7591BC7073400F3F906 /* Stream_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stream_Mock.hpp; sourceTree = "<group>"; };
+		FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bean_Mock.cpp; sourceTree = "<group>"; };
+		FBC4A75C1BC744CA00F3F906 /* Bean_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bean_Mock.hpp; sourceTree = "<group>"; };
+		FBC4A75E1BC82B6600F3F906 /* BrickBotShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickBotShared.h; sourceTree = "<group>"; };
+		FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotBrain.cpp; sourceTree = "<group>"; };
+		FBC4A7601BC82DD700F3F906 /* BrickBotBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotBrain.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBC4A72D1BC6345B00F3F906 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FBC4A7271BC6345B00F3F906 = {
+			isa = PBXGroup;
+			children = (
+				FBC4A7321BC6345B00F3F906 /* BrickBot_ArduinoLib */,
+				FBC4A7311BC6345B00F3F906 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBC4A7311BC6345B00F3F906 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4A7301BC6345B00F3F906 /* BrickBot_ArduinoLib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBC4A7321BC6345B00F3F906 /* BrickBot_ArduinoLib */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4A7451BC63C6B00F3F906 /* test */,
+				FBC4A73B1BC6351900F3F906 /* mock */,
+				FBC4A73A1BC634FD00F3F906 /* src */,
+				FBC4A7331BC6345B00F3F906 /* main.cpp */,
+			);
+			path = BrickBot_ArduinoLib;
+			sourceTree = "<group>";
+		};
+		FBC4A73A1BC634FD00F3F906 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4A75E1BC82B6600F3F906 /* BrickBotShared.h */,
+				FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */,
+				FBC4A7401BC636A400F3F906 /* BrickBot.h */,
+				FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */,
+				FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */,
+				FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */,
+				FBC4A7561BC6EBFD00F3F906 /* BrickBotRangeFinder.h */,
+				FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */,
+				FBC4A7601BC82DD700F3F906 /* BrickBotBrain.h */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		FBC4A73B1BC6351900F3F906 /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */,
+				FBC4A73D1BC6353D00F3F906 /* Servo_Mock.hpp */,
+				FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */,
+				FBC4A74D1BC654A100F3F906 /* Arduino_Mock.hpp */,
+				FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */,
+				FBC4A7591BC7073400F3F906 /* Stream_Mock.hpp */,
+				FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */,
+				FBC4A75C1BC744CA00F3F906 /* Bean_Mock.hpp */,
+			);
+			path = mock;
+			sourceTree = "<group>";
+		};
+		FBC4A7451BC63C6B00F3F906 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4A7461BC63CC800F3F906 /* BrickBotTests.cpp */,
+				FBC4A7471BC63CC800F3F906 /* BrickBotTests.hpp */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBC4A72F1BC6345B00F3F906 /* BrickBot_ArduinoLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBC4A7371BC6345B00F3F906 /* Build configuration list for PBXNativeTarget "BrickBot_ArduinoLib" */;
+			buildPhases = (
+				FBC4A72C1BC6345B00F3F906 /* Sources */,
+				FBC4A72D1BC6345B00F3F906 /* Frameworks */,
+				FBC4A72E1BC6345B00F3F906 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BrickBot_ArduinoLib;
+			productName = BrickBot_ArduinoLib;
+			productReference = FBC4A7301BC6345B00F3F906 /* BrickBot_ArduinoLib */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBC4A7281BC6345B00F3F906 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Smallwisdom;
+				TargetAttributes = {
+					FBC4A72F1BC6345B00F3F906 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = FBC4A72B1BC6345B00F3F906 /* Build configuration list for PBXProject "BrickBot_ArduinoLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FBC4A7271BC6345B00F3F906;
+			productRefGroup = FBC4A7311BC6345B00F3F906 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBC4A72F1BC6345B00F3F906 /* BrickBot_ArduinoLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBC4A72C1BC6345B00F3F906 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC4A7571BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp in Sources */,
+				FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */,
+				FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */,
+				FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */,
+				FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */,
+				FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */,
+				FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */,
+				FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */,
+				FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */,
+				FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FBC4A7351BC6345B00F3F906 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"BrickBot_Simulator=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FBC4A7361BC6345B00F3F906 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FBC4A7381BC6345B00F3F906 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FBC4A7391BC6345B00F3F906 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBC4A72B1BC6345B00F3F906 /* Build configuration list for PBXProject "BrickBot_ArduinoLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC4A7351BC6345B00F3F906 /* Debug */,
+				FBC4A7361BC6345B00F3F906 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBC4A7371BC6345B00F3F906 /* Build configuration list for PBXNativeTarget "BrickBot_ArduinoLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC4A7381BC6345B00F3F906 /* Debug */,
+				FBC4A7391BC6345B00F3F906 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBC4A7281BC6345B00F3F906 /* Project object */;
+}

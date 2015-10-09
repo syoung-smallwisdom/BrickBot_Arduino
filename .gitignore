@@ -17,6 +17,10 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+# Makefile
+BrickBot_ArduinoLib/build/*
+BrickBot_ArduinoLib/bin/*
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
