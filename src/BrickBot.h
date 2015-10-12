@@ -108,7 +108,6 @@ protected:
     BrickBotServoProtocol *servoRight;
     int _dir = 0;
     int _steer = 0;
-    uint8_t motorSpeed[2] = {BB_MOTOR_STOP, BB_MOTOR_STOP};
     int motorCalibration[BBMotorCalibrationStateCount][2];
     int defaultMotorCalibration[BBMotorCalibrationStateCount][2] = {
         {BB_MOTOR_CENTER/2, -1*BB_MOTOR_CENTER},    // left

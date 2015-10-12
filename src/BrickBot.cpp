@@ -78,6 +78,10 @@ BrickBotState BrickBot::updateState() {
         state.remoteOn = false;
     }
     
+    if (!state.remoteOn && !state.autopilotOn) {
+        stopMotors();
+    }
+    
     // If the robot has changed orientation then update the motor state
     if (robotChangedOrientation) {
         updateMotorState();
@@ -104,10 +108,6 @@ void BrickBot::checkRemote() {
                 memcpy(&control, &rec_buffer[1], sizeof(control));
                 runMotors((int)control.dir - 1, (int)control.steer - 1);
             }
-            else {
-                // If remote is off the stop the motors
-                stopMotors();
-            }
             state.remoteOn = remoteOn;
         }
         else if (controlFlag == BBControlFlagAutopilot) {
@@ -130,6 +130,12 @@ void BrickBot::checkRemote() {
                 updateMotorState();
             }
         }
+        
+        // No matter what, copy back the message to indicate that it was received
+        uint8_t buffer[rec_length];
+        memcpy(buffer, rec_buffer, rec_length);
+        brain->writeSerialBytes(buffer, rec_length);
+        
     }
 }
 
@@ -159,23 +165,34 @@ void BrickBot::setAutopilotOn(bool on) {
 }
 
 uint8_t BrickBot::getMotorSpeed(int motor) {
-    return (motor < 2) ? motorSpeed[motor] : 255;
+    BrickBotServoProtocol *servo = (motor == BB_MOTOR_LEFT) ? servoLeft : servoRight;
+    return servo->read();
 }
 
 void BrickBot::setMotorValue(int motor, int spd) {
     
+    BrickBotServoProtocol *servo = (motor == BB_MOTOR_LEFT) ? servoLeft : servoRight;
+    int currentSpd = servo->read();
+    if (currentSpd == spd) {
+        // Speed has not changed
+        return;
+    }
+    
     // If this is a switch from forward/backward then send the
     // stop signal and set a delay
-    if ((spd > BB_MOTOR_STOP && motorSpeed[motor] < BB_MOTOR_STOP) ||
-        (spd < BB_MOTOR_STOP && motorSpeed[motor] > BB_MOTOR_STOP)) {
-        this->setMotorValue(motor, BB_MOTOR_STOP);
+    if ((spd > BB_MOTOR_STOP && currentSpd < BB_MOTOR_STOP) ||
+        (spd < BB_MOTOR_STOP && currentSpd > BB_MOTOR_STOP)) {
+        servo->write(BB_MOTOR_STOP);
         delay(50);
     }
     
     // write to the appropriate motor
-    motorSpeed[motor] = spd;
-    BrickBotServoProtocol *servo = (motor == BB_MOTOR_LEFT) ? servoLeft : servoRight;
     servo->write(spd);
+    
+    // Send message that motor speed changed
+    uint8_t flag = (motor == BB_MOTOR_LEFT) ? BBControlFlagLeftMotorChanged : BBControlFlagRightMotorChanged;
+    uint8_t buffer[] = {flag, (uint8_t)spd};
+    brain->writeSerialBytes(buffer, sizeof(buffer));
 }
 
 void BrickBot::stopMotors() {

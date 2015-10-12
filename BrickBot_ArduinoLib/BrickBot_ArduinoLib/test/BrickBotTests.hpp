@@ -18,6 +18,7 @@ class BrickBotServoMock : public BrickBotServoProtocol
 public:
     BrickBotServoMock(int pin);
     void write(int value);
+    int read();
     int value;
     int pin;
 };

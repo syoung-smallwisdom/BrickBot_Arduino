@@ -39,7 +39,7 @@ public:
     virtual void setScratchData(uint8_t bank, const uint8_t* buffer, uint8_t length) = 0;
     
     virtual size_t readSerialBytes( char *buffer, size_t length) { return 0; };
-    virtual void println(const char* str) = 0;
+    virtual size_t writeSerialBytes(const uint8_t *buffer, size_t size) { return 0; };
     
 };
 
@@ -59,7 +59,7 @@ public:
     void setScratchData(uint8_t bank, const uint8_t* buffer, uint8_t length);
     
     size_t readSerialBytes( char *buffer, size_t length);
-    void println(const char* str);
+    size_t writeSerialBytes(const uint8_t *buffer, size_t size);
     
 protected:
     Stream *serial;

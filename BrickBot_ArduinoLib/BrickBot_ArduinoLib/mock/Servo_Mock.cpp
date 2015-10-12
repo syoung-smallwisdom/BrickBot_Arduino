@@ -15,7 +15,12 @@ uint8_t Servo::attach(int pin) {
 }
 
 void Servo::write(int value) {
-    _value = value;
     std::cout << "write " << value << " to pin " << _pin << "\n";
+    _value = value;
+}
+
+int Servo::read() {
+    std::cout << "read pin " << _pin << " = " << _value << "\n";
+    return _value;
 }
 

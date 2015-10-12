@@ -20,7 +20,7 @@ public:
     // terminates if length characters have been read or timeout (see setTimeout)
     // returns the number of characters placed in the buffer (0 means no valid data found)
     
-    size_t println(const char[]);
+    size_t write(const uint8_t *buffer, size_t size);
 
     char *buffer = {};
     size_t length = 0;

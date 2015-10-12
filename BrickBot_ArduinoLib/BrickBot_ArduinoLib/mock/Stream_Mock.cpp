@@ -15,7 +15,10 @@ size_t Stream::readBytes( char *buffer, size_t length) {
     return this->length;
 }
 
-size_t Stream::println(const char* str) {
-    std::cout << str << "\n";
+size_t Stream::write(const uint8_t *buffer, size_t size) {
+    for (int ii=0; ii < size; ii++) {
+        std::cout << (int)buffer[ii] << " ";
+    }
+    std::cout << "\n";
     return 1;
 }

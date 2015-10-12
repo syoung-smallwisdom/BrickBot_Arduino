@@ -50,7 +50,7 @@ size_t BrickBotBean::readSerialBytes( char *buffer, size_t length){
     return serial->readBytes(buffer, length);
 }
 
-void BrickBotBean::println(const char* str) {
-    serial->println(str);
+size_t BrickBotBean::writeSerialBytes(const uint8_t *buffer, size_t size) {
+    return serial->write(buffer, size);
 }
 

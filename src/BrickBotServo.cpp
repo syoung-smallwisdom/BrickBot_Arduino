@@ -15,3 +15,7 @@ BrickBotServo::BrickBotServo(int pin) {
 void BrickBotServo::write(int value) {
     motor.write(value);
 }
+
+int BrickBotServo::read() {
+    return motor.read();
+}

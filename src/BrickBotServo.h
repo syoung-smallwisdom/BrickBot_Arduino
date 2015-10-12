@@ -19,6 +19,7 @@ class BrickBotServoProtocol
 {
 public:
     virtual void write(int value) = 0;
+    virtual int read() { return 0; }
 };
 
 class BrickBotServo : public BrickBotServoProtocol
@@ -26,6 +27,7 @@ class BrickBotServo : public BrickBotServoProtocol
 public:
     BrickBotServo(int pin);
     void write(int value);
+    int read();
     
 protected:
     Servo motor;

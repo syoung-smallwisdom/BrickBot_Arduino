@@ -18,6 +18,7 @@ class Servo
 public:
     uint8_t attach(int pin);           // attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure
     void write(int value);             // if value is < 200 its treated as an angle, otherwise as pulse width in microseconds
+    int read();
     
 protected:
     int _pin;

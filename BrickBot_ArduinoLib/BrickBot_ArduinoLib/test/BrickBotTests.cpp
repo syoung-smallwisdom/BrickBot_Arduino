@@ -80,6 +80,11 @@ void BrickBotServoMock::write(int value) {
     std::cout << "write " << value << " to pin " << this->pin << "\n";
 }
 
+int BrickBotServoMock::read() {
+    std::cout << "read pin " << this->pin << " = " << value << "\n";
+    return this->value;
+}
+
 void BrickBotTests::testStop() {
     
     this->stopMotors();

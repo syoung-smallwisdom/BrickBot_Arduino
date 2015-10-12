@@ -16,18 +16,13 @@
 #define BB_STEER_RIGHT 1
 #define BB_STEER_LEFT -1
 
-typedef struct {
-    uint8_t steer: 2;     // 2-bit = left, center, right
-    uint8_t dir: 2;       // 2-bit = back, center, forward
-    bool remoteOn: 1;
-    uint8_t padding: 3;
-} BBControlStruct;
-
 enum BBControlFlag: uint8_t {
     BBControlFlagRemote = 0xF0,
     BBControlFlagAutopilot = 0xF1,
     BBControlFlagMotorCalibration = 0xF2,
-    BBControlFlagResetCalibration = 0xF3
+    BBControlFlagResetCalibration = 0xF3,
+    BBControlFlagLeftMotorChanged = 0xF4,
+    BBControlFlagRightMotorChanged = 0xF5,
 };
 
 enum BBReservedScratchBank: uint8_t {
@@ -42,5 +37,12 @@ enum BBMotorCalibrationState: uint8_t {
     BBMotorCalibrationStateForwardRight,
     BBMotorCalibrationStateCount
 };
+
+typedef struct {
+    uint8_t steer: 2;     // 2-bit = left, center, right
+    uint8_t dir: 2;       // 2-bit = back, center, forward
+    bool remoteOn: 1;
+    uint8_t padding: 3;
+} BBControlStruct;
 
 #endif /* BrickBotShared_h */
