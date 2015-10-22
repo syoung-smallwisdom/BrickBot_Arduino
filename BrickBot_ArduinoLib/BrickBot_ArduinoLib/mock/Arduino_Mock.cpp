@@ -29,4 +29,15 @@ unsigned long pulseIn(uint8_t pin, uint8_t state) {
     return 55;
 }
 
+int analogRead(uint8_t) {
+    return 0;
+}
+
+void tone(uint8_t pin, unsigned int frequency, unsigned long duration) {
+    std::cout << "tone " << pin << ":" << frequency << ":" << duration << "\n";
+}
+
+void noTone(uint8_t pin) {
+    std::cout << "noTone" << pin << "\n";
+}
 

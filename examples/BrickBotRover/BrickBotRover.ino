@@ -8,6 +8,8 @@
 
 const int delayMilliseconds = 50;
 BrickBot brickBot;
+//uint8_t previousLeftSpeed = 0;
+//uint8_t previousRightSpeed = 0;
 
 void setup() {
   // Setup the serial connection
@@ -37,6 +39,15 @@ void loop() {
       // Otherwise, reset the autopilot state
       resetAutopilot();
     }
+
+//    uint8_t leftSpeed = brickBot.getMotorSpeed(0);
+//    uint8_t rightSpeed = brickBot.getMotorSpeed(1);
+//
+//    if ((leftSpeed != previousLeftSpeed) || (rightSpeed != previousRightSpeed)) {
+//      previousLeftSpeed = leftSpeed;
+//      previousRightSpeed = rightSpeed;
+//      Serial.println("Speed changed. {" + String(leftSpeed) + "," + String(rightSpeed) + "}");
+//    }
 
     // use a delay rather than a Bean.sleep so that the motors stay active
     delay(delayMilliseconds);

@@ -8,19 +8,21 @@
 
 #include "BrickBot.h"
 
-void BrickBot::attach(BrickBotBrainProtocol *brain, int leftMotorPin, int rightMotorPin, int triggerPin, int echoPin) {
+void BrickBot::attach(BrickBotBrainProtocol *brain, int leftMotorPin, int rightMotorPin) {
     attachComm(brain);
     attachServoPins(leftMotorPin, rightMotorPin);
-    attachRangeFinderPins(triggerPin, echoPin);
 }
 
 void BrickBot::attach(BrickBotBrainProtocol *brain,
                       BrickBotServoProtocol *servoLeft,
-                      BrickBotServoProtocol *servoRight,
-                      BrickBotRangeFinderProtocol *rangeFinder) {
+                      BrickBotServoProtocol *servoRight) {
     attachComm(brain);
     attachServos(servoLeft, servoRight);
-    attachRangeFinder(rangeFinder);
+}
+
+void BrickBot::attachVoiceBox(BrickBotVoiceBoxProtocol *voiceBox) {
+    this->voiceBox = voiceBox;
+    hasVoiceBox = true;
 }
 
 
@@ -45,6 +47,8 @@ void BrickBot::attachComm(BrickBotBrainProtocol *brain) {
 
 void BrickBot::sleep() {
     
+    connectedOn = false;
+    
     // reset state
     state.autopilotOn = false;
     state.remoteOn = false;
@@ -52,12 +56,30 @@ void BrickBot::sleep() {
     
     // stop the motors
     stopMotors();
-    
-    // Sleep unless woken
-    brain->sleep(0xFFFFFFFF);
+}
+
+void BrickBot::wakeup() {
+    connectedOn = false;
+    state.autopilotOn = true;
+    if (hasVoiceBox) {
+        this->voiceBox->sayHello();
+    }
 }
 
 BrickBotState BrickBot::updateState() {
+    
+    bool previouslyEnabled = state.enabled;
+    state.enabled = brain->enabled();
+    
+    if (!state.enabled) {
+        if (previouslyEnabled) {
+            sleep();
+        }
+        return state;
+    }
+    else if (state.enabled && !previouslyEnabled) {
+        wakeup();
+    }
     
     state.connected = brain->getConnectionState();
     
@@ -160,10 +182,6 @@ void BrickBot::attachServos(BrickBotServoProtocol *servoLeft, BrickBotServoProto
     resetMotorCalibration();
 }
 
-void BrickBot::setAutopilotOn(bool on) {
-    state.autopilotOn = on;
-}
-
 uint8_t BrickBot::getMotorSpeed(int motor) {
     BrickBotServoProtocol *servo = (motor == BB_MOTOR_LEFT) ? servoLeft : servoRight;
     return servo->read();
@@ -195,8 +213,11 @@ void BrickBot::setMotorValue(int motor, int spd) {
     brain->writeSerialBytes(buffer, sizeof(buffer));
 }
 
-void BrickBot::stopMotors() {
+void BrickBot::stopMotors(bool hasObjectInFront) {
     runMotors(0, 0);
+    if (hasObjectInFront && hasVoiceBox) {
+        this->voiceBox->sayUhOh();
+    }
 }
 
 void BrickBot::runMotors(int dir, int steer) {
@@ -207,7 +228,7 @@ void BrickBot::runMotors(int dir, int steer) {
 }
 
 void BrickBot::updateMotorState() {
-    if (!state.isRobotUpright) {
+    if (!state.isRobotUpright || !state.enabled) {
         setMotorValue(BB_MOTOR_RIGHT, BB_MOTOR_STOP);
         setMotorValue(BB_MOTOR_LEFT, BB_MOTOR_STOP);
     }
@@ -252,21 +273,6 @@ void BrickBot::updateMotorCalibration(int idx, uint8_t rec) {
     motorCalibration[idx][BB_MOTOR_RIGHT] = offset > 0 ? -90 + offset : -90;
 }
 
-// ---------------------------------------------------------------------------------------------
-// Range Finder
-// ---------------------------------------------------------------------------------------------
-
-void BrickBot::attachRangeFinderPins(int triggerPin, int echoPin) {
-    attachRangeFinder(new BrickBotRangeFinder(triggerPin, echoPin));
-}
-
-void BrickBot::attachRangeFinder(BrickBotRangeFinderProtocol *rangeFinder) {
-    this->rangeFinder = rangeFinder;
-}
-
-bool BrickBot::hasObjectInFront() {
-    return (this->rangeFinder != NULL) ? this->rangeFinder->hasObjectInFront() : false;
-}
 
 // ---------------------------------------------------------------------------------------------
 // GravitySwitch

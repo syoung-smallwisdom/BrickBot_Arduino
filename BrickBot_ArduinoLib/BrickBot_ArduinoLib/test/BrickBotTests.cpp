@@ -15,7 +15,7 @@ void BrickBotTests::runTests() {
     // Attach the serial and bean
     tests.serialMock = new Stream();
     tests.beanMock = new BeanClass();
-    tests.attachComm(new BrickBotBean(tests.serialMock, tests.beanMock));
+    tests.attachComm(new BrickBotBean(tests.serialMock, tests.beanMock, -1));
     
     // Attach to mock servos for test
     tests.leftServoMock = new BrickBotServoMock(0);
@@ -87,7 +87,7 @@ int BrickBotServoMock::read() {
 
 void BrickBotTests::testStop() {
     
-    this->stopMotors();
+    this->stopMotors(true);
     
     assert(this->leftServoMock->value == 90);
     assert(this->rightServoMock->value == 90);

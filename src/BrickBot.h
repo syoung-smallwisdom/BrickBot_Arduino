@@ -9,17 +9,11 @@
 #ifndef BrickBot_hpp
 #define BrickBot_hpp
 
-#ifndef BrickBot_Simulator
-#include <Servo.h>
-#include <Arduino.h>
-#else
-#include "Arduino_Mock.hpp"
-#endif
-
+#include "BrickBotArduino.h"
 #include "BrickBotShared.h"
 #include "BrickBotBrain.h"
 #include "BrickBotServo.h"
-#include "BrickBotRangeFinder.h"
+#include "BrickBotVoiceBox.h"
 
 #define BB_MOTOR_LEFT 0
 #define BB_MOTOR_RIGHT 1
@@ -33,6 +27,7 @@ typedef struct {
     bool autopilotOn = true;
     bool remoteOn = false;
     bool isRobotUpright = true;
+    bool enabled = false;
 } BrickBotState;
 
 class BrickBot {
@@ -41,8 +36,8 @@ public:
     /**
      * Must either attach using pins and default motors and range finders or attach your own.
      */
-    void attach(BrickBotBrainProtocol *brain, int leftMotorPin, int rightMotorPin, int triggerPin, int echoPin);
-    void attach(BrickBotBrainProtocol *brain, BrickBotServoProtocol *servoLeft, BrickBotServoProtocol *servoRight, BrickBotRangeFinderProtocol *rangeFinder);
+    void attach(BrickBotBrainProtocol *brain, int leftMotorPin, int rightMotorPin);
+    void attach(BrickBotBrainProtocol *brain, BrickBotServoProtocol *servoLeft, BrickBotServoProtocol *servoRight);
     
     /**
      * Get state information about connection
@@ -55,9 +50,14 @@ public:
     void sleep();
     
     /**
+     * Wakeup the robot (which will reset state to "setup" conditions)
+     */
+    void wakeup();
+    
+    /**
      * Stop the motors
      */
-    void stopMotors();
+    void stopMotors(bool hasObjectInFront = false);
     
     /**
      * Send a command to run the motors with the current dir and steer settings.
@@ -75,16 +75,6 @@ public:
     void resetMotorCalibration();
     
     /**
-     * Change autopilot state
-     */
-    void setAutopilotOn(bool on);
-    
-    /**
-     * Is there an object within range
-     */
-    bool hasObjectInFront();
-    
-    /**
      * Is the robot upright
      */
     bool isRobotUpright();
@@ -94,6 +84,12 @@ public:
      */
     int zAxisOrientationSide = 60;
     int zAxisOrientationUp = 220;
+    
+    
+    /**
+     * Attach a voicebox to the arduino
+     */
+    void attachVoiceBox(BrickBotVoiceBoxProtocol *voiceBox);
 
 protected:
     
@@ -118,11 +114,10 @@ protected:
     void updateMotorCalibration(int idx, uint8_t rec);
     void updateMotorState();
     void setMotorValue(int motor, int spd);
-    
-    // Range finder
-    BrickBotRangeFinderProtocol *rangeFinder;
-    void attachRangeFinderPins(int triggerPin, int echoPin);
-    void attachRangeFinder(BrickBotRangeFinderProtocol *rangeFinder);
+     
+    // voice
+    bool hasVoiceBox = false;
+    BrickBotVoiceBoxProtocol *voiceBox;
 };
 
 #endif /* BrickBot_hpp */

@@ -15,12 +15,7 @@
 #ifndef BrickBotBrain_hpp
 #define BrickBotBrain_hpp
 
-#ifndef BrickBot_Simulator
-#include <Arduino.h>
-#else
-#include "Arduino_Mock.hpp"
-#endif
-
+#include "BrickBotArduino.h"
 #include "BrickBotShared.h"
 
 class BrickBotBrainProtocol
@@ -41,15 +36,18 @@ public:
     virtual size_t readSerialBytes( char *buffer, size_t length) { return 0; };
     virtual size_t writeSerialBytes(const uint8_t *buffer, size_t size) { return 0; };
     
+    virtual bool enabled() { return true; };
+    
 };
 
 class BrickBotBean : public BrickBotBrainProtocol
 {
 public:
-    BrickBotBean(Stream *serial, BeanClass *bean);
+    BrickBotBean(Stream *serial, BeanClass *bean, int powerSwitch);
     
     bool getConnectionState();
     void sleep(uint32_t duration_ms);
+    bool enabled();
     
     int16_t getAccelerationX(void);
     int16_t getAccelerationY(void);
@@ -62,6 +60,7 @@ public:
     size_t writeSerialBytes(const uint8_t *buffer, size_t size);
     
 protected:
+    int powerSwitch;
     Stream *serial;
     BeanClass *bean;
 };

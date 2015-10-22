@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB4ED8721BD97C9C001D456B /* BrickBotVoiceBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED8701BD97C9C001D456B /* BrickBotVoiceBox.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7331BC6345B00F3F906 /* main.cpp */; };
 		FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7461BC63CC800F3F906 /* BrickBotTests.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */; settings = {ASSET_TAGS = (); }; };
-		FBC4A7571BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -32,6 +32,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FB4ED8701BD97C9C001D456B /* BrickBotVoiceBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotVoiceBox.cpp; sourceTree = "<group>"; };
+		FB4ED8711BD97C9C001D456B /* BrickBotVoiceBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotVoiceBox.h; sourceTree = "<group>"; };
+		FB4ED8731BD97CE3001D456B /* BrickBotArduino.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickBotArduino.h; sourceTree = "<group>"; };
 		FBC4A7301BC6345B00F3F906 /* BrickBot_ArduinoLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BrickBot_ArduinoLib; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC4A7331BC6345B00F3F906 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Servo_Mock.cpp; sourceTree = "<group>"; };
@@ -44,8 +47,6 @@
 		FBC4A74D1BC654A100F3F906 /* Arduino_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Arduino_Mock.hpp; sourceTree = "<group>"; };
 		FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotServo.cpp; sourceTree = "<group>"; };
 		FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotServo.h; sourceTree = "<group>"; };
-		FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotRangeFinder.cpp; sourceTree = "<group>"; };
-		FBC4A7561BC6EBFD00F3F906 /* BrickBotRangeFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotRangeFinder.h; sourceTree = "<group>"; };
 		FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stream_Mock.cpp; sourceTree = "<group>"; };
 		FBC4A7591BC7073400F3F906 /* Stream_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stream_Mock.hpp; sourceTree = "<group>"; };
 		FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bean_Mock.cpp; sourceTree = "<group>"; };
@@ -97,14 +98,15 @@
 			isa = PBXGroup;
 			children = (
 				FBC4A75E1BC82B6600F3F906 /* BrickBotShared.h */,
+				FB4ED8731BD97CE3001D456B /* BrickBotArduino.h */,
 				FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */,
 				FBC4A7401BC636A400F3F906 /* BrickBot.h */,
 				FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */,
 				FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */,
-				FBC4A7551BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp */,
-				FBC4A7561BC6EBFD00F3F906 /* BrickBotRangeFinder.h */,
 				FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */,
 				FBC4A7601BC82DD700F3F906 /* BrickBotBrain.h */,
+				FB4ED8701BD97C9C001D456B /* BrickBotVoiceBox.cpp */,
+				FB4ED8711BD97C9C001D456B /* BrickBotVoiceBox.h */,
 			);
 			name = src;
 			path = ../../src;
@@ -190,13 +192,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBC4A7571BC6EBFD00F3F906 /* BrickBotRangeFinder.cpp in Sources */,
 				FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */,
 				FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */,
 				FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */,
 				FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */,
 				FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */,
 				FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */,
+				FB4ED8721BD97C9C001D456B /* BrickBotVoiceBox.cpp in Sources */,
 				FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */,
 				FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */,
 				FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */,

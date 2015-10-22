@@ -8,11 +8,12 @@
 
 #include "BrickBotBrain.h"
 
-BrickBotBean::BrickBotBean(Stream *serial, BeanClass *bean) {
-    
+BrickBotBean::BrickBotBean(Stream *serial, BeanClass *bean, int powerSwitch) {
+
     // assign pointers
     this->serial = serial;
     this->bean = bean;
+    this->powerSwitch = powerSwitch;
     
     // Setup the bean to wake up when connected to the remote
     this->bean->enableWakeOnConnect(true);
@@ -53,4 +54,13 @@ size_t BrickBotBean::readSerialBytes( char *buffer, size_t length){
 size_t BrickBotBean::writeSerialBytes(const uint8_t *buffer, size_t size) {
     return serial->write(buffer, size);
 }
+
+bool BrickBotBean::enabled() {
+    // by default, Bean will run on 3.3v line while the motors and leds run on 5v,
+    // read the voltage on the 5v line using a transistor to step it down.
+    int av = analogRead(powerSwitch);
+    return av > 150;
+}
+
+
 

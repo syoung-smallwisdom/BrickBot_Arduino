@@ -22,6 +22,8 @@ extern "C"{
     
 #define INPUT 0x0
 #define OUTPUT 0x1
+    
+#define A0 0
 
 void delay(unsigned long);
 void delayMicroseconds(unsigned int us);
@@ -29,7 +31,12 @@ void delayMicroseconds(unsigned int us);
 void pinMode(uint8_t, uint8_t);
 void digitalWrite(uint8_t, uint8_t);
     
+int analogRead(uint8_t);
+    
 unsigned long pulseIn(uint8_t pin, uint8_t state);
+    
+void tone(uint8_t pin, unsigned int frequency, unsigned long duration = 0);
+void noTone(uint8_t pin);
     
 #ifdef __cplusplus
 } // extern "C"
