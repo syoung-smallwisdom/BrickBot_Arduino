@@ -26,11 +26,11 @@ void digitalWrite(uint8_t pin, uint8_t state) {
 
 unsigned long pulseIn(uint8_t pin, uint8_t state) {
     std::cout << "pulseIn " << pin << ":" << state << "\n";
-    return 55;
+    return pulseInValue;
 }
 
 int analogRead(uint8_t) {
-    return 0;
+    return analogReadValue;
 }
 
 void tone(uint8_t pin, unsigned int frequency, unsigned long duration) {

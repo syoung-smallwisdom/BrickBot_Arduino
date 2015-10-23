@@ -14,6 +14,7 @@
 #include "BrickBotBrain.h"
 #include "BrickBotServo.h"
 #include "BrickBotVoiceBox.h"
+#include "BrickBotLights.h"
 
 #define BB_MOTOR_LEFT 0
 #define BB_MOTOR_RIGHT 1
@@ -87,9 +88,14 @@ public:
     
     
     /**
-     * Attach a voicebox to the arduino
+     * Attach a voicebox to the robot (optional)
      */
-    void attachVoiceBox(BrickBotVoiceBoxProtocol *voiceBox);
+    void attachVoiceBox(BrickBotVoiceBox *voiceBox);
+    
+    /**
+     * Attach lights to the robot (optional)
+     */
+    void attachLights(BrickBotLights *lights);
 
 protected:
     
@@ -115,9 +121,13 @@ protected:
     void updateMotorState();
     void setMotorValue(int motor, int spd);
      
-    // voice
+    // Voice
     bool hasVoiceBox = false;
-    BrickBotVoiceBoxProtocol *voiceBox;
+    BrickBotVoiceBox *voiceBox;
+    
+    // Lights
+    bool hasLights = false;
+    BrickBotLights *lights;
 };
 
 #endif /* BrickBot_hpp */

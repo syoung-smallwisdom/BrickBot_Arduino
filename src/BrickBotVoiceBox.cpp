@@ -46,11 +46,11 @@ void BrickBotPiezoVoiceBox::sayHello(){
 }
 
 void BrickBotPiezoVoiceBox::sayUhOh() {
-    for (uint32_t i=BBNote_C6; i<=BBNote_DS6; i++) {
+    for (uint32_t i=BBNote_C6; i<BBNote_DS6; i=i*1.01) {
         playNote(buzzerPin, i, 30);
     }
     delay(200);
-    for (uint32_t i=BBNote_DS6; i>=BBNote_C6; i--) {
+    for (uint32_t i=BBNote_DS6; i>BBNote_C6; i=i*.99) {
         playNote(buzzerPin, i, 30);
     }
 }

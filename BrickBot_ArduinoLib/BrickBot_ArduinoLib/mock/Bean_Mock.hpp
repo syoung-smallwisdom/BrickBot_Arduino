@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "String_Mock.hpp"
 
 typedef struct {
     uint8_t length;
@@ -19,6 +20,8 @@ typedef struct {
 
 class BeanClass {
 public:
+    void setBeanName( const String &s );
+    const char* getBeanName(void);
     bool getConnectionState();
     ScratchData readScratchData(uint8_t bank);
     int16_t getAccelerationX(void);

@@ -11,14 +11,14 @@
 
 #include "BrickBotArduino.h"
 
-class BrickBotVoiceBoxProtocol
+class BrickBotVoiceBox
 {
 public:
     virtual void sayHello() {};
     virtual void sayUhOh() {};
 };
 
-class BrickBotPiezoVoiceBox: public BrickBotVoiceBoxProtocol
+class BrickBotPiezoVoiceBox: public BrickBotVoiceBox
 {
 public:
     BrickBotPiezoVoiceBox(int buzzerPin);

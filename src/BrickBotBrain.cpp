@@ -56,10 +56,19 @@ size_t BrickBotBean::writeSerialBytes(const uint8_t *buffer, size_t size) {
 }
 
 bool BrickBotBean::enabled() {
-    // by default, Bean will run on 3.3v line while the motors and leds run on 5v,
-    // read the voltage on the 5v line using a transistor to step it down.
-    int av = analogRead(powerSwitch);
-    return av > 150;
+    if (powerSwitch >= 0) {
+        // by default, Bean will run on 3.3v line while the motors and leds run on 5v,
+        // read the voltage on the 5v line using a transistor to step it down.
+        int av = analogRead(powerSwitch);
+        return av > 150;
+    }
+    else {
+        return true;
+    }
+}
+
+void BrickBotBean::setName(const char *name) {
+    bean->setBeanName(String(name));
 }
 
 

@@ -68,7 +68,6 @@ void BrickBotTests::runTests() {
     assert(tests.leftServoMock->value == 180);
     assert(tests.rightServoMock->value == 0);
     
-    
 }
 
 BrickBotServoMock::BrickBotServoMock(int pin) {
@@ -77,11 +76,11 @@ BrickBotServoMock::BrickBotServoMock(int pin) {
 
 void BrickBotServoMock::write(int value) {
     this->value = value;
-    std::cout << "write " << value << " to pin " << this->pin << "\n";
+    std::cout << "MOCK: write " << value << " to pin " << this->pin << "\n";
 }
 
 int BrickBotServoMock::read() {
-    std::cout << "read pin " << this->pin << " = " << value << "\n";
+    std::cout << "MOCK: read pin " << this->pin << " = " << value << "\n";
     return this->value;
 }
 
@@ -97,6 +96,7 @@ void BrickBotTests::testStop() {
 
 void BrickBotTests::testRun(int dir, int steer, int expectedLeft, int expectedRight) {
     
+    this->updateState();
     this->runMotors(dir, steer);
     
     assert(this->leftServoMock->value == expectedLeft);

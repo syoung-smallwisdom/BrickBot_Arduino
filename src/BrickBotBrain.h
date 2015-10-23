@@ -22,6 +22,7 @@ class BrickBotBrainProtocol
 {
 public:
     virtual bool getConnectionState() { return false; };
+    virtual bool enabled() { return true; };
     virtual void sleep(uint32_t duration_ms) = 0;
     
     virtual int16_t getAccelerationX(void) { return 0; };
@@ -36,8 +37,7 @@ public:
     virtual size_t readSerialBytes( char *buffer, size_t length) { return 0; };
     virtual size_t writeSerialBytes(const uint8_t *buffer, size_t size) { return 0; };
     
-    virtual bool enabled() { return true; };
-    
+    virtual void setName(const char *name) = 0;
 };
 
 class BrickBotBean : public BrickBotBrainProtocol
@@ -58,6 +58,8 @@ public:
     
     size_t readSerialBytes( char *buffer, size_t length);
     size_t writeSerialBytes(const uint8_t *buffer, size_t size);
+    
+    void setName(const char *name);
     
 protected:
     int powerSwitch;

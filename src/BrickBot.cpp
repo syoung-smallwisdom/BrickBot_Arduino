@@ -20,11 +20,15 @@ void BrickBot::attach(BrickBotBrainProtocol *brain,
     attachServos(servoLeft, servoRight);
 }
 
-void BrickBot::attachVoiceBox(BrickBotVoiceBoxProtocol *voiceBox) {
+void BrickBot::attachVoiceBox(BrickBotVoiceBox *voiceBox) {
     this->voiceBox = voiceBox;
     hasVoiceBox = true;
 }
 
+void BrickBot::attachLights(BrickBotLights *lights) {
+    this->lights = lights;
+    hasLights = true;
+}
 
 // ---------------------------------------------------------------------------------------------
 // Remote Control
@@ -46,23 +50,33 @@ void BrickBot::attachComm(BrickBotBrainProtocol *brain) {
 }
 
 void BrickBot::sleep() {
+
+    // stop the motors
+    stopMotors();
     
-    connectedOn = false;
+    // turn off the lights
+    if (hasLights) {
+        this->lights->setEnabled(false);
+    }
+}
+
+void BrickBot::wakeup() {
     
     // reset state
-    state.autopilotOn = false;
+    connectedOn = false;
+    state.autopilotOn = true;
     state.remoteOn = false;
     state.connected = false;
     
     // stop the motors
     stopMotors();
-}
-
-void BrickBot::wakeup() {
-    connectedOn = false;
-    state.autopilotOn = true;
+    
     if (hasVoiceBox) {
         this->voiceBox->sayHello();
+    }
+    
+    if (hasLights) {
+        this->lights->setEnabled(true);
     }
 }
 
@@ -71,25 +85,28 @@ BrickBotState BrickBot::updateState() {
     bool previouslyEnabled = state.enabled;
     state.enabled = brain->enabled();
     
+    // Check if this is a change in the state from enabled (on) and disabled (off)
     if (!state.enabled) {
         if (previouslyEnabled) {
             sleep();
         }
+        
+        // EXIT EARLY if the robot is disabled.
         return state;
     }
     else if (state.enabled && !previouslyEnabled) {
         wakeup();
     }
-    
-    state.connected = brain->getConnectionState();
-    
-    // Get the current state
+
+    // get whether or not the robot is upright
     bool isRobotUpright = this->isRobotUpright();
     bool robotChangedOrientation = (state.isRobotUpright != isRobotUpright);
     state.isRobotUpright = isRobotUpright;
     
+    // Handle the connection state
+    state.connected = brain->getConnectionState();
     if (state.connected) {
-        if (!connectedOn) {
+        if (!connectedOn && state.enabled) {
             // If this is the first connect, turn off the autopilot by default
             // The connected devise can turn it back on manually.
             state.autopilotOn = false;
@@ -97,9 +114,11 @@ BrickBotState BrickBot::updateState() {
         checkRemote();
     }
     else {
+        // If not connected, then the remote is OFF
         state.remoteOn = false;
     }
     
+    // If the remote is not on AND the autopilot is not on, make sure that the motors are stopped
     if (!state.remoteOn && !state.autopilotOn) {
         stopMotors();
     }
@@ -107,6 +126,11 @@ BrickBotState BrickBot::updateState() {
     // If the robot has changed orientation then update the motor state
     if (robotChangedOrientation) {
         updateMotorState();
+    }
+    
+    // no matter what, step the lights (as long as the robot is enabled)
+    if (hasLights) {
+        this->lights->step();
     }
     
     return state;
@@ -124,22 +148,16 @@ void BrickBot::checkRemote() {
         uint8_t controlFlag = rec_buffer[0];
         if (controlFlag == BBControlFlagRemote) {
             BBControlStruct control;
-            bool remoteOn = (rec_buffer[1] != 0);
-            if (remoteOn) {
+            state.remoteOn = (rec_buffer[1] != 0);
+            if (state.remoteOn) {
                 // If the remote is on then run the motors
                 memcpy(&control, &rec_buffer[1], sizeof(control));
                 runMotors((int)control.dir - 1, (int)control.steer - 1);
             }
-            state.remoteOn = remoteOn;
         }
         else if (controlFlag == BBControlFlagAutopilot) {
             // Update the autopilot
             state.autopilotOn = (rec_buffer[1] != 0);
-            if (!state.remoteOn && !state.autopilotOn) {
-                // If the autopilot is turned off (and the remote is not on)
-                // then stop the motors.
-                stopMotors();
-            }
         }
         else if (controlFlag == BBControlFlagResetCalibration) {
             // Read the motor calibration from the scratch banks
@@ -151,6 +169,10 @@ void BrickBot::checkRemote() {
                 updateMotorCalibration(ii - 1, rec_buffer[ii]);
                 updateMotorState();
             }
+        }
+        else if (controlFlag == BBControlFlagSetName && rec_length > 1) {
+            rec_buffer[rec_length+1] = '\0';
+            brain->setName(&rec_buffer[1]);
         }
         
         // No matter what, copy back the message to indicate that it was received
@@ -191,10 +213,6 @@ void BrickBot::setMotorValue(int motor, int spd) {
     
     BrickBotServoProtocol *servo = (motor == BB_MOTOR_LEFT) ? servoLeft : servoRight;
     int currentSpd = servo->read();
-    if (currentSpd == spd) {
-        // Speed has not changed
-        return;
-    }
     
     // If this is a switch from forward/backward then send the
     // stop signal and set a delay
@@ -206,11 +224,6 @@ void BrickBot::setMotorValue(int motor, int spd) {
     
     // write to the appropriate motor
     servo->write(spd);
-    
-    // Send message that motor speed changed
-    uint8_t flag = (motor == BB_MOTOR_LEFT) ? BBControlFlagLeftMotorChanged : BBControlFlagRightMotorChanged;
-    uint8_t buffer[] = {flag, (uint8_t)spd};
-    brain->writeSerialBytes(buffer, sizeof(buffer));
 }
 
 void BrickBot::stopMotors(bool hasObjectInFront) {

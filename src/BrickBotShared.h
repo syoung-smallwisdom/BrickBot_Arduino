@@ -17,18 +17,19 @@
 #define BB_STEER_LEFT -1
 
 enum BBControlFlag: uint8_t {
+    BBControlFlagLeftMotorChanged = 0xE0,
+    BBControlFlagRightMotorChanged = 0xE1,
     BBControlFlagRemote = 0xF0,
     BBControlFlagAutopilot = 0xF1,
     BBControlFlagMotorCalibration = 0xF2,
     BBControlFlagResetCalibration = 0xF3,
-    BBControlFlagLeftMotorChanged = 0xF4,
-    BBControlFlagRightMotorChanged = 0xF5,
+    BBControlFlagSaveCalibration = 0xF4,
+    BBControlFlagSetName = 0xF5,
 };
 
 enum BBReservedScratchBank: uint8_t {
     BBReservedScratchBankSketchId = 1,
-    BBReservedScratchBankRobotName = 2,
-    BBReservedScratchBankMotorCalibration = 3
+    BBReservedScratchBankMotorCalibration = 2
 };
 
 enum BBMotorCalibrationState: uint8_t {

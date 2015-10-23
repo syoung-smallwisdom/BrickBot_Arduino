@@ -47,3 +47,11 @@ void BeanClass::setScratchData(uint8_t bank, const uint8_t* buffer, uint8_t leng
     scratchData[bank].length = length;
     memcpy(scratchData[bank].data, buffer, length);
 }
+
+void BeanClass::setBeanName( const String &s ) {
+    
+}
+
+const char* getBeanName(void) {
+    return "";
+}
