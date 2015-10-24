@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include "String_Mock.hpp"
 
 class Stream
 {
@@ -21,6 +22,7 @@ public:
     // returns the number of characters placed in the buffer (0 means no valid data found)
     
     size_t write(const uint8_t *buffer, size_t size);
+    size_t println(const String &s);
 
     char *buffer = {};
     size_t length = 0;

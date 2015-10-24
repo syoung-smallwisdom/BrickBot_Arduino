@@ -21,8 +21,9 @@ public:
     String(const char *cstr = "");
     String(const String &str);
     
+    unsigned char concat(char c);
+    String & operator += (char c)			{concat(c); return (*this);}
     
-protected:
     const char *buffer;	        // the actual char array
 };
 

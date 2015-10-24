@@ -17,3 +17,8 @@ String::String(const String &value)
 {
     *this = value;
 }
+
+unsigned char String::concat(char c)
+{
+    return 1;
+}

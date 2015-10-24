@@ -22,3 +22,8 @@ size_t Stream::write(const uint8_t *buffer, size_t size) {
     std::cout << "\n";
     return 1;
 }
+
+size_t Stream::println(const String &s) {
+    std::cout << s.buffer << "\n";
+    return 1;
+}

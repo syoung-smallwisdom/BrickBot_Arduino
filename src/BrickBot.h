@@ -86,7 +86,6 @@ public:
     int zAxisOrientationSide = 60;
     int zAxisOrientationUp = 220;
     
-    
     /**
      * Attach a voicebox to the robot (optional)
      */
@@ -111,10 +110,6 @@ protected:
     int _dir = 0;
     int _steer = 0;
     int motorCalibration[BBMotorCalibrationStateCount][2];
-    int defaultMotorCalibration[BBMotorCalibrationStateCount][2] = {
-        {BB_MOTOR_CENTER/2, -1*BB_MOTOR_CENTER},    // left
-        {BB_MOTOR_CENTER, -1*BB_MOTOR_CENTER},      // straight
-        {BB_MOTOR_CENTER, -1*BB_MOTOR_CENTER/2}};   // right
     void attachServoPins(int leftPin, int rightPin);
     void attachServos(BrickBotServoProtocol *servoLeft, BrickBotServoProtocol *servoRight);
     void updateMotorCalibration(int idx, uint8_t rec);

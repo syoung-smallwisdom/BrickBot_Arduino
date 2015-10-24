@@ -29,7 +29,7 @@ enum BBControlFlag: uint8_t {
 
 enum BBReservedScratchBank: uint8_t {
     BBReservedScratchBankSketchId = 1,
-    BBReservedScratchBankMotorCalibration = 2
+    BBReservedScratchBankMotorCalibration = 3
 };
 
 enum BBMotorCalibrationState: uint8_t {

@@ -55,6 +55,10 @@ size_t BrickBotBean::writeSerialBytes(const uint8_t *buffer, size_t size) {
     return serial->write(buffer, size);
 }
 
+size_t BrickBotBean::println(const String &s) {
+    return serial->println(s);
+}
+
 bool BrickBotBean::enabled() {
     if (powerSwitch >= 0) {
         // by default, Bean will run on 3.3v line while the motors and leds run on 5v,
@@ -67,8 +71,8 @@ bool BrickBotBean::enabled() {
     }
 }
 
-void BrickBotBean::setName(const char *name) {
-    bean->setBeanName(String(name));
+void BrickBotBean::setName(const String &s ) {
+    bean->setBeanName(s);
 }
 
 

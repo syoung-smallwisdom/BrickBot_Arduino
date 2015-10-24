@@ -138,26 +138,30 @@ BrickBotState BrickBot::updateState() {
 
 void BrickBot::checkRemote() {
     
-    //Create a buffer to recieve from LightBlue, along with length
-    char rec_buffer[64];
+    // Set the length to number of bytes recieved
     size_t rec_length = 64;
-    
-    //Set the length to number of bytes recieved
+    char rec_buffer[rec_length];
     rec_length = brain->readSerialBytes(rec_buffer, rec_length);
-    if (rec_length > 0) {
-        uint8_t controlFlag = rec_buffer[0];
+    if (rec_length == 0) {
+        return; // EXIT EARLY if no bytes
+    }
+
+    int ii=0;
+    while (ii < rec_length) {
+        uint8_t controlFlag = rec_buffer[ii]; ii++;
         if (controlFlag == BBControlFlagRemote) {
             BBControlStruct control;
-            state.remoteOn = (rec_buffer[1] != 0);
+            state.remoteOn = (rec_buffer[ii] != 0);
             if (state.remoteOn) {
                 // If the remote is on then run the motors
-                memcpy(&control, &rec_buffer[1], sizeof(control));
+                memcpy(&control, &rec_buffer[ii], sizeof(control));
                 runMotors((int)control.dir - 1, (int)control.steer - 1);
             }
+            ii++;
         }
         else if (controlFlag == BBControlFlagAutopilot) {
             // Update the autopilot
-            state.autopilotOn = (rec_buffer[1] != 0);
+            state.autopilotOn = (rec_buffer[ii] != 0); ii++;
         }
         else if (controlFlag == BBControlFlagResetCalibration) {
             // Read the motor calibration from the scratch banks
@@ -165,22 +169,24 @@ void BrickBot::checkRemote() {
         }
         else if (controlFlag == BBControlFlagMotorCalibration) {
             // Set the motor calibration for each motor state
-            for (int ii=1; ii < rec_length && ii < BBMotorCalibrationStateCount; ii++) {
+            for (; ii < rec_length && ii < BBMotorCalibrationStateCount; ii++) {
                 updateMotorCalibration(ii - 1, rec_buffer[ii]);
                 updateMotorState();
             }
         }
-        else if (controlFlag == BBControlFlagSetName && rec_length > 1) {
-            rec_buffer[rec_length+1] = '\0';
-            brain->setName(&rec_buffer[1]);
+        else if (controlFlag == BBControlFlagSetName && ii < rec_length) {
+            String name = "";
+            for (; ii < rec_length && (rec_buffer[ii] != 0x00); ii++) {
+                name += rec_buffer[ii];
+            }
+            brain->setName(name);
         }
-        
-        // No matter what, copy back the message to indicate that it was received
-        uint8_t buffer[rec_length];
-        memcpy(buffer, rec_buffer, rec_length);
-        brain->writeSerialBytes(buffer, rec_length);
-        
     }
+    
+    // No matter what, copy back the message to indicate that it was received
+    uint8_t buffer[rec_length];
+    memcpy(buffer, rec_buffer, rec_length);
+    brain->writeSerialBytes(buffer, rec_length);
 }
 
 
@@ -272,9 +278,7 @@ void BrickBot::resetMotorCalibration() {
     }
     else {
         for (int ii=0; ii < BBMotorCalibrationStateCount; ii++) {
-            for (int jj=0; jj < 2; jj++) {
-                motorCalibration[ii][jj] = defaultMotorCalibration[ii][jj];
-            }
+            updateMotorCalibration(ii, (ii + 1) * BB_MOTOR_CENTER / 2);
         }
     }
 }

@@ -36,8 +36,9 @@ public:
     
     virtual size_t readSerialBytes( char *buffer, size_t length) { return 0; };
     virtual size_t writeSerialBytes(const uint8_t *buffer, size_t size) { return 0; };
+    virtual size_t println(const String &s) { return 0; };
     
-    virtual void setName(const char *name) = 0;
+    virtual void setName(const String &s) = 0;
 };
 
 class BrickBotBean : public BrickBotBrainProtocol
@@ -58,12 +59,13 @@ public:
     
     size_t readSerialBytes( char *buffer, size_t length);
     size_t writeSerialBytes(const uint8_t *buffer, size_t size);
+    size_t println(const String &s);
     
-    void setName(const char *name);
+    void setName(const String &s);
     
 protected:
-    int powerSwitch;
     Stream *serial;
+    int powerSwitch;
     BeanClass *bean;
 };
 
