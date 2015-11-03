@@ -12,28 +12,24 @@
 #include <iostream>
 #include <assert.h>
 #include "BrickBot.h"
-
-class BrickBotServoMock : public BrickBotServoProtocol
-{
-public:
-    BrickBotServoMock(int pin);
-    void write(int value);
-    int read();
-    int value;
-    int pin;
-};
+#include "BrickBotServoDriver.h"
+#include "BrickBotBean.h"
 
 class BrickBotTests: BrickBot {
 public:
+    BrickBotTests(BeanSerialTransport *serial, BeanClass *bean) :
+    BrickBot(new BrickBotBean(serial, bean), new BrickBotServoDriver(0,1), new BrickBotRangeFinder())  {
+        this->serialMock = serial;
+        this->beanMock = bean;
+    };
     static void runTests();
+    
 private:
     void testSetDirection(int dir, int steer, int expectedDir, int expectedSteer);
     void testStop();
     void testRun(int dir, int steer, int expectedLeft, int expectedRight);
     
-    BrickBotServoMock *leftServoMock;
-    BrickBotServoMock *rightServoMock;
-    Stream *serialMock;
+    BeanSerialTransport *serialMock;
     BeanClass *beanMock;
     
 };

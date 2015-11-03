@@ -17,56 +17,27 @@
 
 #include "BrickBotArduino.h"
 #include "BrickBotShared.h"
+#include "BrickBotDriver.h"
 
-class BrickBotBrainProtocol
+class BrickBotBrain
 {
 public:
     virtual bool getConnectionState() { return false; };
     virtual bool enabled() { return true; };
-    virtual void sleep(uint32_t duration_ms) = 0;
+    virtual void sleep(uint32_t duration_ms) {
+        delay(duration_ms);
+    };
     
     virtual int16_t getAccelerationX(void) { return 0; };
     virtual int16_t getAccelerationY(void) { return 0; };
     virtual int16_t getAccelerationZ(void) { return 0; };
-    
-    virtual ScratchData readScratchData(uint8_t bank) {
-        ScratchData ret; return ret;
-    };
-    virtual void setScratchData(uint8_t bank, const uint8_t* buffer, uint8_t length) = 0;
     
     virtual size_t readSerialBytes( char *buffer, size_t length) { return 0; };
     virtual size_t writeSerialBytes(const uint8_t *buffer, size_t size) { return 0; };
     virtual size_t println(const String &s) { return 0; };
     
     virtual void setName(const String &s) = 0;
-};
-
-class BrickBotBean : public BrickBotBrainProtocol
-{
-public:
-    BrickBotBean(Stream *serial, BeanClass *bean, int powerSwitch);
-    
-    bool getConnectionState();
-    void sleep(uint32_t duration_ms);
-    bool enabled();
-    
-    int16_t getAccelerationX(void);
-    int16_t getAccelerationY(void);
-    int16_t getAccelerationZ(void);
-    
-    ScratchData readScratchData(uint8_t bank);
-    void setScratchData(uint8_t bank, const uint8_t* buffer, uint8_t length);
-    
-    size_t readSerialBytes( char *buffer, size_t length);
-    size_t writeSerialBytes(const uint8_t *buffer, size_t size);
-    size_t println(const String &s);
-    
-    void setName(const String &s);
-    
-protected:
-    Stream *serial;
-    int powerSwitch;
-    BeanClass *bean;
-};
+    virtual void setCalibrationData(BBCalibrationData data) = 0;
+}; 
 
 #endif /* BrickBotBrain_hpp */

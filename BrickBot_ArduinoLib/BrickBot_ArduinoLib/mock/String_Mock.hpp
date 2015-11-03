@@ -6,8 +6,8 @@
 //  Copyright © 2015 Smallwisdom. All rights reserved.
 //
 
-#ifndef String_Mock_hpp
-#define String_Mock_hpp
+#ifndef String_class_h
+#define String_class_h
 
 #include <stdlib.h>
 #include <string.h>

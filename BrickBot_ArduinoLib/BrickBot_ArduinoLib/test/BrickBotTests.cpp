@@ -10,17 +10,12 @@
 
 void BrickBotTests::runTests() {
     
-    BrickBotTests tests;
-    
     // Attach the serial and bean
-    tests.serialMock = new Stream();
-    tests.beanMock = new BeanClass();
-    tests.attachComm(new BrickBotBean(tests.serialMock, tests.beanMock, -1));
+    BeanSerialTransport *serialMock = new BeanSerialTransport();
+    BeanClass *beanMock = new BeanClass();
     
     // Attach to mock servos for test
-    tests.leftServoMock = new BrickBotServoMock(0);
-    tests.rightServoMock = new BrickBotServoMock(1);
-    tests.attachServos(tests.leftServoMock, tests.rightServoMock);
+    BrickBotTests tests = BrickBotTests(serialMock, beanMock);
 
     // Test Stop
     tests.testStop();
@@ -37,59 +32,52 @@ void BrickBotTests::runTests() {
     
     // Test Stop
     tests.testStop();
-    
-    // Test Run - following motor calibration
-    // Desired = {{20, -90}, {90, -34}, {90, -18}};
-    uint8_t buffer[3] = {20, 146, 162};
-    tests.beanMock->setScratchData(BBReservedScratchBankMotorCalibration, buffer, 3);
-    tests.resetMotorCalibration();
-    tests.testRun(BB_DIR_FORWARD, 0, 180, 56);
-    tests.testRun(BB_DIR_FORWARD, BB_STEER_RIGHT, 180, 72);
-    tests.testRun(BB_DIR_FORWARD, BB_STEER_LEFT, 110, 0);
-    
-    // Test Stop
-    tests.testStop();
+    tests.driver->resetMotorCalibration();
     
     // Test Turtle - robot rolls over or is picked up by a 2 year old
-    uint8_t buffer_clear[1] = {0};
-    tests.beanMock->setScratchData(BBReservedScratchBankMotorCalibration, buffer_clear, 1);
-    tests.resetMotorCalibration();
     // start moving forward
     tests.testRun(BB_DIR_FORWARD, 0, 180, 0);
     // turn upside down and update state
     tests.beanMock->accelerationZ = -220;
     tests.updateState();
     // Check that the motors are stopped
-    assert(tests.leftServoMock->value == 90);
-    assert(tests.rightServoMock->value == 90);
+    assert(tests.driver->getMotorSpeed(0) == 90);
+    assert(tests.driver->getMotorSpeed(1) == 90);
     // turn rightside up and update state
     tests.beanMock->accelerationZ = 220;
     tests.updateState();
-    assert(tests.leftServoMock->value == 180);
-    assert(tests.rightServoMock->value == 0);
+    assert(tests.driver->getMotorSpeed(0) == 180);
+    assert(tests.driver->getMotorSpeed(1) == 0);
     
-}
+    // Test Stop
+    tests.testStop();
 
-BrickBotServoMock::BrickBotServoMock(int pin) {
-    this->pin = pin;
-}
-
-void BrickBotServoMock::write(int value) {
-    this->value = value;
-    std::cout << "MOCK: write " << value << " to pin " << this->pin << "\n";
-}
-
-int BrickBotServoMock::read() {
-    std::cout << "MOCK: read pin " << this->pin << " = " << value << "\n";
-    return this->value;
+    // Test Run - following motor calibration
+    // Desired = {{20, -90}, {90, -34}, {90, -18}};
+    tests.serialMock->length = 4;
+    uint8_t buffer[4] = {BBControlFlagMotorCalibration, 20, 146, 162};
+    memcpy(tests.serialMock->buffer, buffer, 4);
+    tests.beanMock->connectionState = true;
+    tests.updateState();
+    tests.testRun(BB_DIR_FORWARD, 0, 180, 56);
+    tests.testRun(BB_DIR_FORWARD, BB_STEER_RIGHT, 180, 72);
+    tests.testRun(BB_DIR_FORWARD, BB_STEER_LEFT, 110, 0);
+    
+    // check setting/getting motor calibration
+    tests.driver->saveMotorCalibration();
+    BBCalibrationData data = tests.driver->getDefaultCalibrationData();
+    assert(data.length == 3);
+    assert(data.data[0] == 20);
+    assert(data.data[1] == 146);
+    assert(data.data[2] == 162);
 }
 
 void BrickBotTests::testStop() {
     
     this->stopMotors(true);
     
-    assert(this->leftServoMock->value == 90);
-    assert(this->rightServoMock->value == 90);
+    assert(this->driver->getMotorSpeed(0) == 90);
+    assert(this->driver->getMotorSpeed(1) == 90);
     assert(this->_dir == 0);
     assert(this->_steer == 0);
 }
@@ -99,6 +87,6 @@ void BrickBotTests::testRun(int dir, int steer, int expectedLeft, int expectedRi
     this->updateState();
     this->runMotors(dir, steer);
     
-    assert(this->leftServoMock->value == expectedLeft);
-    assert(this->rightServoMock->value == expectedRight);
+    assert(this->driver->getMotorSpeed(0) == expectedLeft);
+    assert(this->driver->getMotorSpeed(1) == expectedRight);
 }

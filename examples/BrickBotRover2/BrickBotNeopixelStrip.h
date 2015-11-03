@@ -1,3 +1,5 @@
+#include <Adafruit_NeoPixel.h>
+
 //
 //  BrickBotNeopixelStrip.hpp
 //  BrickBot_ArduinoLib
@@ -10,12 +12,6 @@
 #define BrickBotNeopixelStrip_hpp
 
 #include "BrickBotLights.h"
-
-#ifndef BrickBot_Simulator
-#include <Adafruit_NeoPixel.h>
-#else
-#include "Neopixel_Mock.hpp"
-#endif
 
 class BrickBotNeopixelStrip: public BrickBotLights
 {

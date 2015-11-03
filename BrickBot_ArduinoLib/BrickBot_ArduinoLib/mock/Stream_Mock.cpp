@@ -12,7 +12,11 @@ size_t Stream::readBytes( char *buffer, size_t length) {
     
     size_t len = (this->length < length) ? this->length : length;
     memcpy(buffer, this->buffer, len);
-    return this->length;
+    
+    //  clear the buffer
+    this->length = 0;
+    
+    return len;
 }
 
 size_t Stream::write(const uint8_t *buffer, size_t size) {
@@ -24,6 +28,6 @@ size_t Stream::write(const uint8_t *buffer, size_t size) {
 }
 
 size_t Stream::println(const String &s) {
-    std::cout << s.buffer << "\n";
+    std::cout << s.c_str() << "\n";
     return 1;
 }

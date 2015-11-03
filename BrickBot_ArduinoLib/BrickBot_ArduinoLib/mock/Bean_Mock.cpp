@@ -8,6 +8,9 @@
 
 #include "Bean_Mock.hpp"
 
+BeanClass Bean;
+BeanSerialTransport Serial;
+
 BeanClass::BeanClass() {
     for (int ii=1; ii <= 5; ii++) {
         scratchData[ii].length = 1;
@@ -33,6 +36,11 @@ int16_t BeanClass::getAccelerationX(void) {
 
 int16_t BeanClass::getAccelerationY(void) {
     return 0;
+}
+
+AccelerationReading BeanClass::getAcceleration() {
+    AccelerationReading reading;
+    return reading;
 }
 
 void BeanClass::sleep(uint32_t duration_ms) {

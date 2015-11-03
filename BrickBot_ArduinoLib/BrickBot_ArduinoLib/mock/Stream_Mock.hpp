@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
-#include "String_Mock.hpp"
+#include "WString.h"
 
 class Stream
 {
@@ -24,7 +24,7 @@ public:
     size_t write(const uint8_t *buffer, size_t size);
     size_t println(const String &s);
 
-    char *buffer = {};
+    char buffer[64];
     size_t length = 0;
 };
 

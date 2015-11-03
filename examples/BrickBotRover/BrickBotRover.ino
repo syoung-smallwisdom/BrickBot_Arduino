@@ -1,60 +1,38 @@
 #include <Servo.h>
-#include <BrickBot.h>
+#include <BrickBotRover.h>
+#include <BrickBotBean.h>
+#include <BrickBotServoDriver.h>
+#include <BrickBotHCSR04.h>
 
-#define PIN_LEFT  0
-#define PIN_RIGHT 1
-#define PIN_TRIG  3
-#define PIN_ECHO  2
+#define PIN_LEFT          0
+#define PIN_RIGHT         1
+#define PIN_RANGE_ECHO    3
+#define PIN_RANGE_TRIGGER 4
 
-const int delayMilliseconds = 50;
-BrickBot brickBot;
-//uint8_t previousLeftSpeed = 0;
-//uint8_t previousRightSpeed = 0;
+BrickBotRover *controller;
 
 void setup() {
   // Setup the serial connection
   Serial.begin(57600);
   Serial.setTimeout(5);
 
-  // Attach the brickbot
-  brickBot.attach(new BrickBotBean(&Serial, &Bean), PIN_LEFT, PIN_RIGHT, PIN_TRIG, PIN_ECHO);
+  // Instantiate the classes that are used for this robot to define the brain, driver and range finder
+  // This robot doesn't have lights or sound.
+  BrickBotBean *brain = new BrickBotBean(&Serial, &Bean);
+  BrickBotServoDriver *driver = new BrickBotServoDriver(PIN_LEFT, PIN_RIGHT);
+  BrickBotHCSR04 *rangeFinder = new BrickBotHCSR04(PIN_RANGE_ECHO, PIN_RANGE_TRIGGER);
+  
+  // Setup motor calibration - must be done in setup b/c there is no way to save calibration data
+  // across poweron. Set it on the driver, and then save that value to the brain.
+  uint8_t data[3] = {BB_MOTOR_CENTER / 2, BB_MOTOR_CENTER, BB_MOTOR_CENTER * 3 / 2};
+  driver->setDefaultCalibrationData(data, 3);
+  brain->setCalibrationData(driver->getDefaultCalibrationData());
+
+  // Setup the controller
+  controller = new BrickBotRover(brain, driver, rangeFinder);
 }
 
 void loop() {
-
-  // Update the brickbot state (and run robot if using remote)
-  // This should be checked at the beginning of each loop to test for the 
-  // robot being run remotely or turtled (turned over).
-  BrickBotState state = brickBot.updateState();
-
-  // If the autopilot is ON or the robot is connected to a remote
-  // then update the autopilot routine and then wait before looping again.
-  if (state.autopilotOn || state.connected) {
- 
-    if (state.autopilotOn && !state.remoteOn) {
-      // If the autopilot is on then check the range
-      runAutopilot();
-    }
-    else {
-      // Otherwise, reset the autopilot state
-      resetAutopilot();
-    }
-
-//    uint8_t leftSpeed = brickBot.getMotorSpeed(0);
-//    uint8_t rightSpeed = brickBot.getMotorSpeed(1);
-//
-//    if ((leftSpeed != previousLeftSpeed) || (rightSpeed != previousRightSpeed)) {
-//      previousLeftSpeed = leftSpeed;
-//      previousRightSpeed = rightSpeed;
-//      Serial.println("Speed changed. {" + String(leftSpeed) + "," + String(rightSpeed) + "}");
-//    }
-
-    // use a delay rather than a Bean.sleep so that the motors stay active
-    delay(delayMilliseconds);
-  }
-  else {
-    // Otherwise, put the robot to sleep
-    brickBot.sleep();
-  }
+  controller->loop();
 }
 

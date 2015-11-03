@@ -8,19 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		FB4ED8721BD97C9C001D456B /* BrickBotVoiceBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED8701BD97C9C001D456B /* BrickBotVoiceBox.cpp */; settings = {ASSET_TAGS = (); }; };
-		FB4ED8761BD9AC61001D456B /* String_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED8741BD9AC61001D456B /* String_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FB4ED8791BD9BB4B001D456B /* BrickBotLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED8771BD9BB4B001D456B /* BrickBotLights.cpp */; settings = {ASSET_TAGS = (); }; };
 		FB4ED87C1BD9BBC4001D456B /* Neopixel_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED87A1BD9BBC4001D456B /* Neopixel_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
-		FB4ED8821BD9EE6A001D456B /* BrickBotNeopixelStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED8801BD9EE6A001D456B /* BrickBotNeopixelStrip.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7331BC6345B00F3F906 /* main.cpp */; };
 		FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7461BC63CC800F3F906 /* BrickBotTests.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
-		FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */; settings = {ASSET_TAGS = (); }; };
 		FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DBB1BE814DC00C44107 /* BrickBotDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DB91BE814DC00C44107 /* BrickBotDriver.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DBE1BE815C100C44107 /* BrickBotServoDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DBC1BE815C100C44107 /* BrickBotServoDriver.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DC11BE847CC00C44107 /* BrickBotBean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DBF1BE847CC00C44107 /* BrickBotBean.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DC51BE8857D00C44107 /* BrickBotRangeFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DC31BE8857D00C44107 /* BrickBotRangeFinder.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DC81BE8881100C44107 /* BrickBotHCSR04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DC61BE8881100C44107 /* BrickBotHCSR04.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DCB1BE88ADF00C44107 /* WString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DC91BE88ADF00C44107 /* WString.cpp */; settings = {ASSET_TAGS = (); }; };
+		FBD59DCE1BE88D0400C44107 /* BrickBotRover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD59DCC1BE88D0400C44107 /* BrickBotRover.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,8 +49,6 @@
 		FB4ED8781BD9BB4B001D456B /* BrickBotLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotLights.h; sourceTree = "<group>"; };
 		FB4ED87A1BD9BBC4001D456B /* Neopixel_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Neopixel_Mock.cpp; sourceTree = "<group>"; };
 		FB4ED87B1BD9BBC4001D456B /* Neopixel_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Neopixel_Mock.hpp; sourceTree = "<group>"; };
-		FB4ED8801BD9EE6A001D456B /* BrickBotNeopixelStrip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotNeopixelStrip.cpp; sourceTree = "<group>"; };
-		FB4ED8811BD9EE6A001D456B /* BrickBotNeopixelStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotNeopixelStrip.h; sourceTree = "<group>"; };
 		FBC4A7301BC6345B00F3F906 /* BrickBot_ArduinoLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BrickBot_ArduinoLib; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC4A7331BC6345B00F3F906 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Servo_Mock.cpp; sourceTree = "<group>"; };
@@ -57,8 +59,6 @@
 		FBC4A7471BC63CC800F3F906 /* BrickBotTests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrickBotTests.hpp; sourceTree = "<group>"; };
 		FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arduino_Mock.cpp; sourceTree = "<group>"; };
 		FBC4A74D1BC654A100F3F906 /* Arduino_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Arduino_Mock.hpp; sourceTree = "<group>"; };
-		FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotServo.cpp; sourceTree = "<group>"; };
-		FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotServo.h; sourceTree = "<group>"; };
 		FBC4A7581BC7073400F3F906 /* Stream_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stream_Mock.cpp; sourceTree = "<group>"; };
 		FBC4A7591BC7073400F3F906 /* Stream_Mock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stream_Mock.hpp; sourceTree = "<group>"; };
 		FBC4A75B1BC744CA00F3F906 /* Bean_Mock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bean_Mock.cpp; sourceTree = "<group>"; };
@@ -66,6 +66,20 @@
 		FBC4A75E1BC82B6600F3F906 /* BrickBotShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickBotShared.h; sourceTree = "<group>"; };
 		FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotBrain.cpp; sourceTree = "<group>"; };
 		FBC4A7601BC82DD700F3F906 /* BrickBotBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotBrain.h; sourceTree = "<group>"; };
+		FBD59DB91BE814DC00C44107 /* BrickBotDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotDriver.cpp; sourceTree = "<group>"; };
+		FBD59DBA1BE814DC00C44107 /* BrickBotDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotDriver.h; sourceTree = "<group>"; };
+		FBD59DBC1BE815C100C44107 /* BrickBotServoDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotServoDriver.cpp; sourceTree = "<group>"; };
+		FBD59DBD1BE815C100C44107 /* BrickBotServoDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotServoDriver.h; sourceTree = "<group>"; };
+		FBD59DBF1BE847CC00C44107 /* BrickBotBean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotBean.cpp; sourceTree = "<group>"; };
+		FBD59DC01BE847CC00C44107 /* BrickBotBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotBean.h; sourceTree = "<group>"; };
+		FBD59DC31BE8857D00C44107 /* BrickBotRangeFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotRangeFinder.cpp; sourceTree = "<group>"; };
+		FBD59DC41BE8857D00C44107 /* BrickBotRangeFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotRangeFinder.h; sourceTree = "<group>"; };
+		FBD59DC61BE8881100C44107 /* BrickBotHCSR04.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotHCSR04.cpp; sourceTree = "<group>"; };
+		FBD59DC71BE8881100C44107 /* BrickBotHCSR04.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotHCSR04.h; sourceTree = "<group>"; };
+		FBD59DC91BE88ADF00C44107 /* WString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WString.cpp; sourceTree = "<group>"; };
+		FBD59DCA1BE88ADF00C44107 /* WString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WString.h; sourceTree = "<group>"; };
+		FBD59DCC1BE88D0400C44107 /* BrickBotRover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrickBotRover.cpp; sourceTree = "<group>"; };
+		FBD59DCD1BE88D0400C44107 /* BrickBotRover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickBotRover.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,20 +123,23 @@
 		FBC4A73A1BC634FD00F3F906 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FBD59DC21BE8852200C44107 /* subclasses */,
 				FBC4A75E1BC82B6600F3F906 /* BrickBotShared.h */,
 				FB4ED8731BD97CE3001D456B /* BrickBotArduino.h */,
 				FBC4A73F1BC636A400F3F906 /* BrickBot.cpp */,
 				FBC4A7401BC636A400F3F906 /* BrickBot.h */,
-				FBC4A7521BC6DC0600F3F906 /* BrickBotServo.cpp */,
-				FBC4A7531BC6DC0600F3F906 /* BrickBotServo.h */,
 				FBC4A75F1BC82DD700F3F906 /* BrickBotBrain.cpp */,
 				FBC4A7601BC82DD700F3F906 /* BrickBotBrain.h */,
+				FBD59DB91BE814DC00C44107 /* BrickBotDriver.cpp */,
+				FBD59DBA1BE814DC00C44107 /* BrickBotDriver.h */,
 				FB4ED8701BD97C9C001D456B /* BrickBotVoiceBox.cpp */,
 				FB4ED8711BD97C9C001D456B /* BrickBotVoiceBox.h */,
 				FB4ED8771BD9BB4B001D456B /* BrickBotLights.cpp */,
 				FB4ED8781BD9BB4B001D456B /* BrickBotLights.h */,
-				FB4ED8801BD9EE6A001D456B /* BrickBotNeopixelStrip.cpp */,
-				FB4ED8811BD9EE6A001D456B /* BrickBotNeopixelStrip.h */,
+				FBD59DC31BE8857D00C44107 /* BrickBotRangeFinder.cpp */,
+				FBD59DC41BE8857D00C44107 /* BrickBotRangeFinder.h */,
+				FBD59DCC1BE88D0400C44107 /* BrickBotRover.cpp */,
+				FBD59DCD1BE88D0400C44107 /* BrickBotRover.h */,
 			);
 			name = src;
 			path = ../../src;
@@ -131,6 +148,8 @@
 		FBC4A73B1BC6351900F3F906 /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				FBD59DC91BE88ADF00C44107 /* WString.cpp */,
+				FBD59DCA1BE88ADF00C44107 /* WString.h */,
 				FBC4A73C1BC6353D00F3F906 /* Servo_Mock.cpp */,
 				FBC4A73D1BC6353D00F3F906 /* Servo_Mock.hpp */,
 				FBC4A74C1BC654A100F3F906 /* Arduino_Mock.cpp */,
@@ -154,6 +173,19 @@
 				FBC4A7471BC63CC800F3F906 /* BrickBotTests.hpp */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		FBD59DC21BE8852200C44107 /* subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				FBD59DBF1BE847CC00C44107 /* BrickBotBean.cpp */,
+				FBD59DC01BE847CC00C44107 /* BrickBotBean.h */,
+				FBD59DBC1BE815C100C44107 /* BrickBotServoDriver.cpp */,
+				FBD59DBD1BE815C100C44107 /* BrickBotServoDriver.h */,
+				FBD59DC61BE8881100C44107 /* BrickBotHCSR04.cpp */,
+				FBD59DC71BE8881100C44107 /* BrickBotHCSR04.h */,
+			);
+			name = subclasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,17 +247,21 @@
 				FBC4A74E1BC654A100F3F906 /* Arduino_Mock.cpp in Sources */,
 				FBC4A7431BC636A400F3F906 /* BrickBot.cpp in Sources */,
 				FBC4A7341BC6345B00F3F906 /* main.cpp in Sources */,
+				FBD59DBE1BE815C100C44107 /* BrickBotServoDriver.cpp in Sources */,
 				FB4ED87C1BD9BBC4001D456B /* Neopixel_Mock.cpp in Sources */,
 				FBC4A7481BC63CC800F3F906 /* BrickBotTests.cpp in Sources */,
 				FBC4A75D1BC744CA00F3F906 /* Bean_Mock.cpp in Sources */,
-				FB4ED8821BD9EE6A001D456B /* BrickBotNeopixelStrip.cpp in Sources */,
+				FBD59DC51BE8857D00C44107 /* BrickBotRangeFinder.cpp in Sources */,
+				FBD59DC11BE847CC00C44107 /* BrickBotBean.cpp in Sources */,
+				FBD59DC81BE8881100C44107 /* BrickBotHCSR04.cpp in Sources */,
+				FBD59DBB1BE814DC00C44107 /* BrickBotDriver.cpp in Sources */,
 				FBC4A75A1BC7073400F3F906 /* Stream_Mock.cpp in Sources */,
 				FB4ED8791BD9BB4B001D456B /* BrickBotLights.cpp in Sources */,
 				FB4ED8721BD97C9C001D456B /* BrickBotVoiceBox.cpp in Sources */,
 				FBC4A73E1BC6353D00F3F906 /* Servo_Mock.cpp in Sources */,
-				FB4ED8761BD9AC61001D456B /* String_Mock.cpp in Sources */,
 				FBC4A7611BC82DD700F3F906 /* BrickBotBrain.cpp in Sources */,
-				FBC4A7541BC6DC0600F3F906 /* BrickBotServo.cpp in Sources */,
+				FBD59DCE1BE88D0400C44107 /* BrickBotRover.cpp in Sources */,
+				FBD59DCB1BE88ADF00C44107 /* WString.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

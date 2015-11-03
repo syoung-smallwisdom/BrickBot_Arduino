@@ -12,16 +12,10 @@
 #include "BrickBotArduino.h"
 #include "BrickBotShared.h"
 #include "BrickBotBrain.h"
-#include "BrickBotServo.h"
+#include "BrickBotDriver.h"
 #include "BrickBotVoiceBox.h"
 #include "BrickBotLights.h"
-
-#define BB_MOTOR_LEFT 0
-#define BB_MOTOR_RIGHT 1
-
-#define BB_MOTOR_STOP 90
-#define BB_MOTOR_CENTER 90
-#define BB_MOTOR_SLOW 20
+#include "BrickBotRangeFinder.h"
 
 typedef struct {
     bool connected = false;
@@ -34,11 +28,7 @@ typedef struct {
 class BrickBot {
 public:
     
-    /**
-     * Must either attach using pins and default motors and range finders or attach your own.
-     */
-    void attach(BrickBotBrainProtocol *brain, int leftMotorPin, int rightMotorPin);
-    void attach(BrickBotBrainProtocol *brain, BrickBotServoProtocol *servoLeft, BrickBotServoProtocol *servoRight);
+    BrickBot(BrickBotBrain *brain, BrickBotDriver *driver, BrickBotRangeFinder *rangeFinder);
     
     /**
      * Get state information about connection
@@ -48,7 +38,7 @@ public:
     /**
      * Put the robot to sleep (which will also stop the motors and reset state)
      */
-    void sleep();
+    void sleep(uint32_t duration_ms = 500);
     
     /**
      * Wakeup the robot (which will reset state to "setup" conditions)
@@ -66,19 +56,15 @@ public:
     void runMotors(int dir, int steer);
     
     /**
-     * Get the current motor speed
-     */
-    uint8_t getMotorSpeed(int motor);
-    
-    /**
-     * Reset the motor calibration to the default.
-     */
-    void resetMotorCalibration();
-    
-    /**
      * Is the robot upright
      */
     bool isRobotUpright();
+    
+    /**
+     * Is the robot stuck
+     */
+    bool canMoveForward();
+    bool canMoveBackward();
     
     /**
      * Default orientation values. Allow Arduino sketch to modify these.
@@ -99,23 +85,17 @@ public:
 protected:
     
     // Remote
-    BrickBotBrainProtocol *brain;
+    BrickBotBrain *brain;
     BrickBotState state;
-    void attachComm(BrickBotBrainProtocol *brain);
     void checkRemote();
 
     // Motor control
-    BrickBotServoProtocol *servoLeft;
-    BrickBotServoProtocol *servoRight;
+    BrickBotRangeFinder *rangeFinder;
+    BrickBotDriver *driver;
+    void updateMotorState();
     int _dir = 0;
     int _steer = 0;
-    int motorCalibration[BBMotorCalibrationStateCount][2];
-    void attachServoPins(int leftPin, int rightPin);
-    void attachServos(BrickBotServoProtocol *servoLeft, BrickBotServoProtocol *servoRight);
-    void updateMotorCalibration(int idx, uint8_t rec);
-    void updateMotorState();
-    void setMotorValue(int motor, int spd);
-     
+    
     // Voice
     bool hasVoiceBox = false;
     BrickBotVoiceBox *voiceBox;
